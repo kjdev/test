@@ -7,7 +7,6 @@
 #include "php.h"
 #include "ext/standard/info.h"
 #include "php_test.h"
-#include "test_arginfo.h"
 
 /* For compatibility with older PHP versions */
 #ifndef ZEND_PARSE_PARAMETERS_NONE
@@ -16,8 +15,9 @@
 	ZEND_PARSE_PARAMETERS_END()
 #endif
 
-/* {{{ void test1() */
-PHP_FUNCTION(test1)
+/* {{{ void test_test1()
+ */
+PHP_FUNCTION(test_test1)
 {
 	ZEND_PARSE_PARAMETERS_NONE();
 
@@ -25,8 +25,9 @@ PHP_FUNCTION(test1)
 }
 /* }}} */
 
-/* {{{ string test2( [ string $var ] ) */
-PHP_FUNCTION(test2)
+/* {{{ string test_test2( [ string $var ] )
+ */
+PHP_FUNCTION(test_test2)
 {
 	char *var = "World";
 	size_t var_len = sizeof("World") - 1;
@@ -43,7 +44,8 @@ PHP_FUNCTION(test2)
 }
 /* }}}*/
 
-/* {{{ PHP_RINIT_FUNCTION */
+/* {{{ PHP_RINIT_FUNCTION
+ */
 PHP_RINIT_FUNCTION(test)
 {
 #if defined(ZTS) && defined(COMPILE_DL_TEST)
@@ -54,7 +56,8 @@ PHP_RINIT_FUNCTION(test)
 }
 /* }}} */
 
-/* {{{ PHP_MINFO_FUNCTION */
+/* {{{ PHP_MINFO_FUNCTION
+ */
 PHP_MINFO_FUNCTION(test)
 {
 	php_info_print_table_start();
@@ -63,11 +66,31 @@ PHP_MINFO_FUNCTION(test)
 }
 /* }}} */
 
-/* {{{ test_module_entry */
+/* {{{ arginfo
+ */
+ZEND_BEGIN_ARG_INFO(arginfo_test_test1, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO(arginfo_test_test2, 0)
+	ZEND_ARG_INFO(0, str)
+ZEND_END_ARG_INFO()
+/* }}} */
+
+/* {{{ test_functions[]
+ */
+static const zend_function_entry test_functions[] = {
+	PHP_FE(test_test1,		arginfo_test_test1)
+	PHP_FE(test_test2,		arginfo_test_test2)
+	PHP_FE_END
+};
+/* }}} */
+
+/* {{{ test_module_entry
+ */
 zend_module_entry test_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"test",					/* Extension name */
-	ext_functions,					/* zend_function_entry */
+	test_functions,			/* zend_function_entry */
 	NULL,							/* PHP_MINIT - Module initialization */
 	NULL,							/* PHP_MSHUTDOWN - Module shutdown */
 	PHP_RINIT(test),			/* PHP_RINIT - Request initialization */

@@ -1,14 +1,14 @@
 --TEST--
-test1() Basic test
+test_test1() Basic test
 --SKIPIF--
 <?php
 if (!extension_loaded('test')) {
-    echo 'skip';
+	echo 'skip';
 }
 ?>
 --FILE--
 <?php
-$ret = test1();
+$ret = test_test1();
 
 var_dump($ret);
 ?>

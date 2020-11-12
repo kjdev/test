@@ -3,7 +3,7 @@ test_test2() Basic test
 --SKIPIF--
 <?php
 if (!extension_loaded('test')) {
-    echo 'skip';
+	echo 'skip';
 }
 ?>
 --FILE--

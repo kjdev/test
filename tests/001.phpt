@@ -3,7 +3,7 @@ Check if test is loaded
 --SKIPIF--
 <?php
 if (!extension_loaded('test')) {
-    echo 'skip';
+	echo 'skip';
 }
 ?>
 --FILE--
