@@ -7,8 +7,8 @@ env:
   PHP_VER: 7.4
   ARCH: x64
   TS: 0
-  # VC: vc15
-  VC: vs16
+  VC: vc15
+  # VC: vs16
   VCPKG: 0
   REPORT_EXIT_STATUS: 1
   NO_INTERACTION: 1
@@ -32,11 +32,11 @@ jobs:
       - name: Display the path
         run: echo ${env:PATH}
 
-      # - name: Install
-      #   run: .\.github\workflows\install.ps1
+      - name: Install
+        run: .\.github\workflows\install.ps1
 
-      # - name: Build
-      #   run: .\.github\workflows\build.ps1
+      - name: Build
+        run: .\.github\workflows\build.ps1
 
       # - name: Test
       #   run: .\.github\workflows\test.ps1
