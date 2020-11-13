@@ -1,0 +1,38 @@
+name: Windows
+
+on: [push]
+
+env:
+  BIN_SDK_VER: 2.2.0
+  PHP_VER: 7.4
+  ARCH: x64
+  TS: 0
+  # VC: vc15
+  VC: vs16
+  VCPKG: 0
+  REPORT_EXIT_STATUS: 1
+  NO_INTERACTION: 1
+
+jobs:
+  test:
+    name: Windows
+    runs-on: windows-latest
+
+    # strategy:
+    #   matrix:
+    #     php:
+    #       - 7.4
+    #       - 7.3-zts
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install
+        run: .\.github\workflows\install.ps1
+
+      - name: Build
+        run: .\.github\workflows\build.ps1
+
+      - name: Test
+        run: .\.github\workflows\test.ps1
