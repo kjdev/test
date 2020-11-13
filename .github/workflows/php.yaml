@@ -14,14 +14,12 @@ jobs:
     strategy:
       matrix:
         php:
-          - 7.2
-          - 7.2-zts
-          - 7.3
-          - 7.3-zts
+          # - 7.2
+          # - 7.2-zts
+          # - 7.3
+          # - 7.3-zts
           - 7.4
-          - 7.4-zts
-          - rc
-          - rc-zts
+          # - 7.4-zts
 
     container:
       image: php:${{ matrix.php }}-alpine3.12
@@ -42,4 +40,9 @@ jobs:
           make
 
       - name: Test
-        run: make test
+        run: |
+          make test | tee test-output.txt && grep 'TEST SUMMARY$' test-output.txt > /dev/null ; test $? '!=' 0
+      - name: Test failure
+        run: |
+          for FILE in $(find ./tests -name '*.diff'); do echo echo $FILE; cat $FILE; echo; done
+        if: ${{ failure() }}
