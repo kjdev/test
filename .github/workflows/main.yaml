@@ -9,7 +9,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: PHP version
         run: php -v
+
       - name: PHP modules
         run: php -m
+
+
+      - name: Hello world action step
+        uses: ./.github/actions/ # Uses an action in the root directory
+        id: hello
+        with:
+          who-to-greet: 'Mona the Octocat'
+
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+      - name: PHP containers
+        uses: docker://php:7.3-zts-alpine3.12
+        with:
+          args: -v
+
