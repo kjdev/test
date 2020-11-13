@@ -28,7 +28,8 @@ jobs:
       #   run: echo ${env:PATH}
 
       - name: Install
-        run: ./install.ps1
+        run: .\.github\workflows\install.ps1
+        # shell: powershell
         env:
           BIN_SDK_VER: 2.2.0
           PHP_VER: 7.4
