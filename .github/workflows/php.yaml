@@ -2,10 +2,6 @@ name: PHP
 
 on: [push]
 
-env:
-  REPORT_EXIT_STATUS: 1
-  NO_INTERACTION: 1
-
 jobs:
   test:
     name: PHP
@@ -55,6 +51,9 @@ jobs:
 
       - name: Test
         run: make test
+        env:
+          REPORT_EXIT_STATUS: 1
+          NO_INTERACTION: 1
       - name: Test failure
         run: |
           for FILE in $(find ./tests -name '*.diff'); do
