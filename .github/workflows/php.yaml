@@ -1,4 +1,4 @@
-name: Linux
+name: PHP
 
 on: [push]
 
@@ -8,14 +8,20 @@ env:
 
 jobs:
   test:
-    name: Linux
+    name: PHP
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         php:
-          - 7.4
+          - 7.2
+          - 7.2-zts
+          - 7.3
           - 7.3-zts
+          - 7.4
+          - 7.4-zts
+          - rc
+          - rc-zts
 
     container:
       image: php:${{ matrix.php }}-alpine3.12
