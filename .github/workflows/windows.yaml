@@ -24,8 +24,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Display the path
-        run: echo ${env:PATH}
+      # - name: Display the path
+      #   run: echo ${env:PATH}
+
+      - name: Install
+        run: ./install.ps1
+        env:
+          BIN_SDK_VER: 2.2.0
+          PHP_VER: 7.4
+          ARCH: x64
+          TS: 0
+          VC: vc15
+          VCPKG: 0
 
       # - name: Install
       #   run: |
