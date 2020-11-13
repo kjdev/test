@@ -3,6 +3,12 @@ name: Windows
 on: [push]
 
 env:
+  BIN_SDK_VER: 2.2.0
+  PHP_VER: 7.4
+  ARCH: x64
+  TS: 0
+  VC: vc15
+  VCPKG: 0
   REPORT_EXIT_STATUS: 1
   NO_INTERACTION: 1
 
@@ -17,37 +23,15 @@ jobs:
     #       - 7.4
     #       - 7.3-zts
 
-    # container:
-    #   image: php:${{ matrix.php }}-alpine3.12
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Display the path
-      #   run: echo ${env:PATH}
-
       - name: Install
         run: .\.github\workflows\install.ps1
-        # shell: powershell
-        env:
-          BIN_SDK_VER: 2.2.0
-          PHP_VER: 7.4
-          ARCH: x64
-          TS: 0
-          VC: vc15
-          VCPKG: 0
 
-      # - name: Install
-      #   run: |
-      #     apk --no-cache upgrade
-      #     apk --no-cache add autoconf gcc libtool make musl-dev
+      - name: Build
+        run: .\.github\workflows\build.ps1
 
-      # - name: Build
-      #   run: |
-      #     phpize
-      #     ./configure
-      #     make
-
-      # - name: Test
-      #   run: make test
+      - name: Test
+        run: .\.github\workflows\test.ps1
