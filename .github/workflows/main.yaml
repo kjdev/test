@@ -2,19 +2,30 @@ name: Test
 
 on: [push]
 
+env:
+  REPORT_EXIT_STATUS: 1
+  NO_INTERACTION: 1
+
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php:
+          - 7.4
+          - 7.3-zts
+
     container:
-      image: php:7.3-zts-alpine3.12
+      # image: php:7.3-zts-alpine3.12
+      image: php:${{ matrix.node }}-alpine3.12
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build preparation
+      - name: Install
         run: |
           apk --no-cache upgrade
           apk --no-cache add autoconf gcc libtool make musl-dev
