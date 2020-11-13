@@ -14,3 +14,4 @@ var_dump(test_test2('PHP'));
 --EXPECT--
 string(11) "Hello World"
 string(9) "Hello PHP"
+HOGE
