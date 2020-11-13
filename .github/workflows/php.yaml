@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        image: php
+        image: [php]
         php:
           # - 5.2
           # - 5.3
