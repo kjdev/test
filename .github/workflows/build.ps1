@@ -1,5 +1,7 @@
 $ErrorActionPreference = "Stop"
 
+echo ${env:PATH}
+
 # $task = New-Item 'task.bat' -Force
 # Add-Content $task 'call phpize 2>&1'
 # Add-Content $task 'call configure --with-php-build=C:\build-cache\deps --enable-test --enable-debug-pack 2>&1'
