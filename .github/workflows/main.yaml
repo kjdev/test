@@ -18,7 +18,6 @@ jobs:
           - 7.3-zts
 
     container:
-      # image: php:7.3-zts-alpine3.12
       image: php:${{ matrix.php }}-alpine3.12
 
     steps:
@@ -38,28 +37,3 @@ jobs:
 
       - name: Test
         run: make test
-
-      # - name: PHP version
-      #   run: php -v
-
-      # - name: PHP modules
-      #   run: php -m
-
-      # - name: Hello world action step
-      #   uses: ./.github/actions/ # Uses an action in the root directory
-      #   id: hello
-      #   with:
-      #     who-to-greet: 'Mona the Octocat'
-
-      # # Use the output from the `hello` step
-      # - name: Get the output time
-      #   run: echo "The time was ${{ steps.hello.outputs.time }}"
-
-      # - name: PHP containers
-      #   uses: docker://php:7.3-zts-alpine3.12
-      #   with:
-      #     # args: -v
-      #     entrypoint: /github/workspace/.github/workflows/run.sh
-      #   env:
-      #     REPORT_EXIT_STATUS: 1
-      #     NO_INTERACTION: 1
