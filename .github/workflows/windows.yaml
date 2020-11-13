@@ -8,7 +8,6 @@ env:
   ARCH: x64
   TS: 0
   VC: vc15
-  # VC: vs16
   VCPKG: 0
   REPORT_EXIT_STATUS: 1
   NO_INTERACTION: 1
@@ -29,14 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Display the path
-        run: echo ${env:PATH}
-
       - name: Install
         run: .\.github\workflows\install.ps1
 
       - name: Build
         run: .\.github\workflows\build.ps1
 
-      # - name: Test
-      #   run: .\.github\workflows\test.ps1
+      - name: Test
+        run: .\.github\workflows\test.ps1
