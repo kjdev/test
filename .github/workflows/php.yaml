@@ -41,8 +41,14 @@ jobs:
 
       - name: Test
         run: |
-          make test | tee test-output.txt && grep 'TEST SUMMARY$' test-output.txt > /dev/null ; test $? '!=' 0
+          make test | tee test-output.txt
+          grep 'TEST SUMMARY$' test-output.txt > /dev/null
+          test $? != 0
       - name: Test failure
         run: |
-          for FILE in $(find ./tests -name '*.diff'); do echo echo $FILE; cat $FILE; echo; done
+          for FILE in $(find ./tests -name '*.diff'); do
+            echo echo $FILE
+            cat $FILE
+            echo
+          done
         if: ${{ failure() }}
