@@ -14,11 +14,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: PHP version
-        run: php -v
+      - name: Build preparation
+        run: |
+          apk --no-cache upgrade
+          apk --no-cache add autoconf gcc libtool make musl-dev
 
-      - name: PHP modules
-        run: php -m
+      - name: Build
+        run: |
+          phpize
+          ./configure
+          make
+
+      - name: Test
+        run: make test
+
+      # - name: PHP version
+      #   run: php -v
+
+      # - name: PHP modules
+      #   run: php -m
 
       # - name: Hello world action step
       #   uses: ./.github/actions/ # Uses an action in the root directory
