@@ -9,8 +9,6 @@ env:
   TS: 0
   VC: vc15
   VCPKG: 0
-  REPORT_EXIT_STATUS: 1
-  NO_INTERACTION: 1
 
 jobs:
   test:
@@ -36,3 +34,6 @@ jobs:
 
       - name: Test
         run: .\.github\workflows\test.ps1
+        env:
+          REPORT_EXIT_STATUS: 1
+          NO_INTERACTION: 1

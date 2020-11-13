@@ -1,5 +1,6 @@
 $ErrorActionPreference = "Stop"
 
+# TODO: setup path
 $env:PHP_PATH = "C:\build-cache\php-7.4.12-nts-Win32-vc15-x64"
 
 $env:TEST_PHP_EXECUTABLE = "$env:PHP_PATH\php.exe"
