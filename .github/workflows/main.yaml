@@ -7,6 +7,9 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
 
+    container:
+      image: php:7.3-zts-alpine3.12
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,8 +30,11 @@ jobs:
       # - name: Get the output time
       #   run: echo "The time was ${{ steps.hello.outputs.time }}"
 
-      - name: PHP containers
-        uses: docker://php:7.3-zts-alpine3.12
-        with:
-          # args: -v
-          entrypoint: /github/workspace/.github/workflows/run.sh
+      # - name: PHP containers
+      #   uses: docker://php:7.3-zts-alpine3.12
+      #   with:
+      #     # args: -v
+      #     entrypoint: /github/workspace/.github/workflows/run.sh
+      #   env:
+      #     REPORT_EXIT_STATUS: 1
+      #     NO_INTERACTION: 1
