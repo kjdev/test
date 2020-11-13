@@ -1,0 +1,42 @@
+name: Windows
+
+on: [push]
+
+env:
+  REPORT_EXIT_STATUS: 1
+  NO_INTERACTION: 1
+
+jobs:
+  test:
+    name: Windows
+    runs-on: windows-latest
+
+    # strategy:
+    #   matrix:
+    #     php:
+    #       - 7.4
+    #       - 7.3-zts
+
+    # container:
+    #   image: php:${{ matrix.php }}-alpine3.12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Display the path
+        run: echo ${env:PATH}
+
+      # - name: Install
+      #   run: |
+      #     apk --no-cache upgrade
+      #     apk --no-cache add autoconf gcc libtool make musl-dev
+
+      # - name: Build
+      #   run: |
+      #     phpize
+      #     ./configure
+      #     make
+
+      # - name: Test
+      #   run: make test
