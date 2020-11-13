@@ -19,7 +19,7 @@ jobs:
 
     container:
       # image: php:7.3-zts-alpine3.12
-      image: php:${{ matrix.node }}-alpine3.12
+      image: php:${{ matrix.php }}-alpine3.12
 
     steps:
       - name: Checkout
