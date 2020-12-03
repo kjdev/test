@@ -24,9 +24,10 @@ jobs:
           - 7.3-zts
           - 7.4
           - 7.4-zts
-        # include:
-        #   - image: xxx
-        #     php: 5.2
+          - 8.0
+        include:
+          - image: [ghcr.io/kjdev/php]
+            php: 7.1
         # exclude:
         #   - image: xxx
         #     php: 7.4
@@ -40,8 +41,8 @@ jobs:
 
       - name: Install
         run: |
-          apk --no-cache upgrade
-          apk --no-cache add autoconf gcc libtool make musl-dev
+          apk upgrade --no-cache
+          apk add --no-cache autoconf gcc libtool make musl-dev
 
       - name: Build
         run: |
