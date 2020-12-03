@@ -26,7 +26,7 @@ jobs:
           - 7.4-zts
           - 8.0
         include:
-          - image: [ghcr.io/kjdev/php]
+          - image: ghcr.io/kjdev/php
             php: 7.1
         # exclude:
         #   - image: xxx
