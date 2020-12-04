@@ -4,7 +4,8 @@ on: [push]
 
 env:
   BIN_SDK_VER: 2.2.0
-  VCPKG: 0
+  # VCPKG: 0
+  VCPKG: 1
 
 jobs:
   ci:
@@ -12,32 +13,32 @@ jobs:
       matrix:
         php:
           - '8.0'
-          - '7.4'
-          - '7.3'
-          - '7.2'
+          # - '7.4'
+          # - '7.3'
+          # - '7.2'
         zts:
           - 'nts'
-          - 'zts'
+          # - 'zts'
         arch:
           - x64
-          - x86
+          # - x86
         os:
           - windows-latest
-          - windows-2016
+          # - windows-2016
         include:
           - os: windows-latest
             vc: vs16
-          - os: windows-2016
-            vc: vc15
-        exclude:
-          - php: '8.0'
-            os: windows-2016
-          - php: '7.4'
-            os: windows-latest
-          - php: '7.3'
-            os: windows-latest
-          - php: '7.2'
-            os: windows-latest
+          # - os: windows-2016
+          #   vc: vc15
+        # exclude:
+        #   - php: '8.0'
+        #     os: windows-2016
+        #   - php: '7.4'
+        #     os: windows-latest
+        #   - php: '7.3'
+        #     os: windows-latest
+        #   - php: '7.2'
+        #     os: windows-latest
 
     runs-on: ${{ matrix.os }}
 
@@ -55,6 +56,9 @@ jobs:
 
       - name: Install
         run: .\.github\workflows\install.ps1
+
+      - name: Install vcpkg
+        run: .\.github\workflows\vcpkg.ps1
 
       - name: Build
         run: .\.github\workflows\build.ps1
