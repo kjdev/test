@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$env:PATH = "C:\php\devel;C:\php\bin;$env:PATH"
+$env:PATH = "C:\php\devel;C:\php\bin;C:\php\deps\bin;$env:PATH"
 
 $task = New-Item 'task.bat' -Force
 Add-Content $task 'call phpize 2>&1'
