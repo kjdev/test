@@ -10,26 +10,44 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [windows-latest]
-        vc: [vs16]
         php:
           - '8.0'
-        include:
-          - os: windows-2016
-            php: '7.4'
-            vc: vc15
-          - os: windows-2016
-            php: '7.3'
-            vc: vc15
-          - os: windows-2016
-            php: '7.2'
-            vc: vc15
+          - '7.4'
+          - '7.3'
+          - '7.2'
         arch:
           - x64
           - x86
         zts:
           - '0'
           - '1'
+        os:
+          - windows-latest
+          - windows-2016
+        vc:
+          - vs16
+          - vc15
+        exclude:
+          - php: '8.0'
+            os: windows-latest
+            vc: vc15
+          - php: '8.0'
+            os: windows-2016
+          - php: '7.4'
+            os: windows-latest
+          - php: '7.4'
+            os: windows-2016
+            vs: vc16
+          - php: '7.3'
+            os: windows-latest
+          - php: '7.3'
+            os: windows-2016
+            vs: vc16
+          - php: '7.2'
+            os: windows-latest
+          - php: '7.2'
+            os: windows-2016
+            vs: vc16
 
     runs-on: ${{ matrix.os }}
 
