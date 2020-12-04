@@ -24,15 +24,15 @@ jobs:
           # - 5.3
           # - 5.2
         apcu:
-          - '0'
-          - '1'
+          - ''
+          - 'apcu'
         include:
           - image: ghcr.io/kjdev/php
             php: '7.1'
-            apcu: '0'
+            apcu: ''
           - image: ghcr.io/kjdev/php
             php: '7.0'
-            apcu: '0'
+            apcu: ''
 
     container:
       image: ${{ matrix.image }}:${{ matrix.php }}-alpine3.12
