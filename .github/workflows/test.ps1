@@ -1,5 +1,7 @@
 $ErrorActionPreference = "Stop"
 
+$env:PATH = "C:\php\devel;C:\php\bin;$env:PATH"
+
 # TODO: setup path
 # $env:PHP_PATH = "C:\build-cache\php-7.4.12-nts-Win32-vc15-x64"
 echo "PATH:" $env:PATH

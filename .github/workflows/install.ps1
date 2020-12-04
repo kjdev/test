@@ -85,3 +85,8 @@ $env:PATH = "$env:PHP_PATH;$env:PATH"
 $env:PATH = "C:\php\deps\bin;$env:PATH"
 
 echo "PATH:" $env:PATH
+
+
+ls "C:\php\devel"
+
+ls "C:\php\bin"
