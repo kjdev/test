@@ -1,4 +1,4 @@
-name: Windows(vs16)
+name: Windows(VS16)
 
 on: [push]
 
