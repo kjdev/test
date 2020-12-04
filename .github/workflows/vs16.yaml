@@ -1,0 +1,45 @@
+name: Windows (VS16)
+
+on: [push]
+
+env:
+  BIN_SDK_VER: 2.2.0
+  VC: vs16
+  VCPKG: 0
+
+jobs:
+  test:
+    name: Windows (VS16)
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        php:
+          - '8.0'
+        arch:
+          - x64
+          - x86
+        zts:
+          - '0'
+          - '1'
+
+    env:
+      PHP_VER: ${{ matrix.php }}
+      ARCH: ${{ matrix.arch }}
+      ZTS: ${{ matrix.zts }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install
+        run: .\.github\workflows\install.ps1
+
+      - name: Build
+        run: .\.github\workflows\build.ps1
+
+      - name: Test
+        run: .\.github\workflows\test.ps1
+        env:
+          REPORT_EXIT_STATUS: 1
+          NO_INTERACTION: 1
