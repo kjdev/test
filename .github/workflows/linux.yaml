@@ -3,13 +3,12 @@ name: Linux
 on: [push]
 
 jobs:
-  test:
+  ci:
     # name: Linux
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        image: [php]
         php:
           - '8.0'
           - '7.4'
@@ -26,12 +25,13 @@ jobs:
         apcu:
           - ''
           - 'apcu'
+        image: [php]
         include:
-          - image: ghcr.io/kjdev/php
-            php: '7.1'
+          - php: '7.1'
+            image: ghcr.io/kjdev/php
             apcu: ''
-          - image: ghcr.io/kjdev/php
-            php: '7.0'
+          - php: '7.0'
+            image: ghcr.io/kjdev/php
             apcu: ''
 
     container:
