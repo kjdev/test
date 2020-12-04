@@ -37,17 +37,17 @@ jobs:
             os: windows-latest
           - php: '7.4'
             os: windows-2016
-            vs: vc16
+            vc: vs16
           - php: '7.3'
             os: windows-latest
           - php: '7.3'
             os: windows-2016
-            vs: vc16
+            vc: vs16
           - php: '7.2'
             os: windows-latest
           - php: '7.2'
             os: windows-2016
-            vs: vc16
+            vc: vs16
 
     runs-on: ${{ matrix.os }}
 
