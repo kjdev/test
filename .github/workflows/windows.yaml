@@ -4,7 +4,7 @@ on: [push]
 
 env:
   BIN_SDK_VER: 2.2.0
-  PHP_VER: 7.4
+  # PHP_VER: 7.4
   ARCH: x64
   TS: 0
   VC: vc15
@@ -16,11 +16,13 @@ jobs:
     # runs-on: windows-latest
     runs-on: windows-2016
 
-    # strategy:
-    #   matrix:
-    #     php:
-    #       - 7.4
-    #       - 7.3-zts
+    strategy:
+      matrix:
+        php:
+          - 7.4
+
+    env:
+      PHP_VER: ${{ matrix.php }}
 
     steps:
       - name: Checkout
