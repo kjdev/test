@@ -38,6 +38,11 @@ jobs:
       image: ${{ matrix.image }}:${{ matrix.php }}-alpine3.12
 
     steps:
+      - name: Require
+        run: |
+          apk upgrade --no-cache
+          apk add --no-cache autoconf gcc git libtool make musl-dev
+
       - name: Checkout
         uses: actions/checkout@v2
       - name: Checkout submodules
@@ -48,12 +53,7 @@ jobs:
           ls
           ls snappy
 
-      - name: Install
-        run: |
-          apk upgrade --no-cache
-          apk add --no-cache autoconf gcc libtool make musl-dev
-
-      - name: Install APCu
+      - name: APCu extension
         run: |
           printf "\n" | pecl install apcu
           echo 'extension=apcu.so' > $(php --ini | grep 'Scan for' | sed 's|.* \(/.*\)$|\1|')/apcu.ini
