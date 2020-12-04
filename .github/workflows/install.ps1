@@ -29,7 +29,7 @@ $php_version = (Get-Content -Path "C:\php\releases.json" | ConvertFrom-Json | Fo
 
 # PHP devel pack: "C:\php\devel"
 $ts_part = ''
-if ('0' -eq $env:ZTS) {
+if ('nts' -eq $env:ZTS) {
     $ts_part = '-nts'
 }
 $bname = "php-devel-pack-$php_version$ts_part-Win32-$env:VC-$env:ARCH.zip"
