@@ -50,18 +50,18 @@ jobs:
       ZTS: ${{ matrix.zts }}
 
     steps:
-      - name: Checkout
+      - name: Install required command
+        run: .\.github\workflows\install.ps1
+
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Checkout submodules
         run: git submodule update --init --recursive
         if: ${{ matrix.library == '' }}
-      - name: Snappy library
+      - name: Install dependency library
         run: .\.github\workflows\vcpkg.ps1
         if: ${{ matrix.library }}
-
-      - name: Install
-        run: .\.github\workflows\install.ps1
 
       - name: Build
         run: .\.github\workflows\build.ps1

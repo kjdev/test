@@ -41,23 +41,23 @@ jobs:
       image: ${{ matrix.image }}:${{ matrix.php }}-alpine3.12
 
     steps:
-      - name: Require
+      - name: Install required command
         run: |
           apk upgrade --no-cache
           apk add --no-cache autoconf gcc git libtool make musl-dev
 
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Checkout submodules
         run: git submodule update --init --recursive
         if: ${{ matrix.library == '' }}
-      - name: Snappy library
+      - name: Install dependency library
         run: |
           apk add --no-cache snappy-dev
         if: ${{ matrix.library }}
 
-      - name: APCu extension
+      - name: Install PHP APCu extension
         run: |
           printf "\n" | pecl install apcu
           echo 'extension=apcu.so' > $(php --ini | grep 'Scan for' | sed 's|.* \(/.*\)$|\1|')/apcu.ini
@@ -74,7 +74,7 @@ jobs:
         env:
           REPORT_EXIT_STATUS: 1
           NO_INTERACTION: 1
-      - name: Test failure
+      - name: Failure Test
         run: |
           for FILE in $(find ./tests -name '*.diff'); do
             echo echo $FILE
