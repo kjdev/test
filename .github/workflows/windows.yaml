@@ -4,7 +4,6 @@ on: [push]
 
 env:
   BIN_SDK_VER: 2.2.0
-  TS: 0
   VC: vc15
   VCPKG: 0
 
@@ -24,10 +23,14 @@ jobs:
         arch:
           - x64
           - x86
+        zts:
+          - '0'
+          - '1'
 
     env:
       PHP_VER: ${{ matrix.php }}
       ARCH: ${{ matrix.arch }}
+      ZTS: ${{ matrix.zts }}
 
     steps:
       - name: Checkout
