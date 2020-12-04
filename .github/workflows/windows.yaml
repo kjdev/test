@@ -27,13 +27,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install
-        run: .\.github\workflows\install.ps1
+        run: |
+          echo "C:\php\devel;C:\php\bin;" >> $GITHUB_PATH
+          .\.github\workflows\install.ps1
 
       - name: Build
-        run: .\.github\workflows\build.ps1
+        run: |
+          echo "C:\php\devel;C:\php\bin;" >> $GITHUB_PATH
+          .\.github\workflows\build.ps1
 
       - name: Test
-        run: .\.github\workflows\test.ps1
+        run: |
+          echo "C:\php\devel;C:\php\bin;" >> $GITHUB_PATH
+          .\.github\workflows\test.ps1
         env:
           REPORT_EXIT_STATUS: 1
           NO_INTERACTION: 1
