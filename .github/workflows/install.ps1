@@ -26,7 +26,7 @@ $php_version = (Get-Content -Path "C:\php\releases.json" | ConvertFrom-Json | Fo
     }
 })
 
-# PHP devel pack
+# PHP devel pack: "C:\php\devel"
 $ts_part = ''
 if ('0' -eq $env:TS) {
     $ts_part = '-nts'
@@ -39,25 +39,19 @@ if (-not (Test-Path "C:\php\$bname")) {
         Invoke-WebRequest "https://windows.php.net/downloads/releases/archives/$bname" -OutFile "C:\php\$bname"
     }
 }
-$dname0 = "php-$php_version-devel-$env:VC-$env:ARCH"
-# $dname1 = "php-$php_version$ts_part-devel-$env:VC-$env:ARCH"
-# if (-not (Test-Path "C:\php\$dname1")) {
+$dname = "php-$php_version-devel-$env:VC-$env:ARCH"
 if (-not (Test-Path "C:\php\devel")) {
     Expand-Archive "C:\php\$bname" 'C:\php'
-    if (-not (Test-Path "C:\php\$dname0")) {
+    if (-not (Test-Path "C:\php\$dname")) {
         $php_normalize_version = $php_version.Split("-")[0]
-        $dname0 = "php-$php_normalize_version-devel-$env:VC-$env:ARCH"
+        $dname = "php-$php_normalize_version-devel-$env:VC-$env:ARCH"
     }
-#    if ($dname0 -ne $dname1) {
-#        Move-Item "C:\php\$dname0" "C:\php\$dname1"
     if (-not (Test-Path "C:\php\devel")) {
-        Move-Item "C:\php\$dname0" "C:\php\devel"
+        Move-Item "C:\php\$dname" "C:\php\devel"
     }
 }
-# $env:PATH = "C:\php\$dname1;$env:PATH"
-$env:PATH = "C:\php\devel;$env:PATH"
 
-# PHP binary
+# PHP binary: "C:\php\bin"
 $bname = "php-$php_version$ts_part-Win32-$env:VC-$env:ARCH.zip"
 if (-not (Test-Path "C:\php\$bname")) {
     try {
@@ -66,27 +60,13 @@ if (-not (Test-Path "C:\php\$bname")) {
         Invoke-WebRequest "https://windows.php.net/downloads/releases/archives/$bname" -OutFile "C:\php\$bname"
     }
 }
-# $dname = "php-$php_version$ts_part-Win32-$env:VC-$env:ARCH"
-# if (-not (Test-Path "C:\php\$dname")) {
 if (-not (Test-Path "C:\php\bin")) {
-#    Expand-Archive "C:\php\$bname" "C:\php\$dname"
     Expand-Archive "C:\php\$bname" "C:\php\bin"
 }
-# $env:PHP_PATH = "C:\php\$dname"
-$env:PHP_PATH = "C:\php\bin"
-$env:PATH = "$env:PHP_PATH;$env:PATH"
 
-# # library dependency
+# # library dependency: "C:\php\deps"
 # $bname = "$env:DEP-$env:VC-$env:ARCH.zip"
 # if (-not (Test-Path "C:\php\$bname")) {
 #     Invoke-WebRequest "https://windows.php.net/downloads/pecl/deps/$bname" -OutFile "C:\php\$bname"
 #     Expand-Archive "C:\php\$bname" 'C:\php\deps'
 # }
-$env:PATH = "C:\php\deps\bin;$env:PATH"
-
-echo "PATH:" $env:PATH
-
-
-ls "C:\php\devel"
-
-ls "C:\php\bin"

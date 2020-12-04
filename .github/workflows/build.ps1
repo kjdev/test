@@ -1,14 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-# TODO: setup path
-# $env:PHP_PATH = "C:\build-cache\php-7.4.12-nts-Win32-vc15-x64"
-# $env:PATH = "C:\build-cache\php-7.4.12-nts-devel-vc15-x64;$env:PATH"
-# $env:PATH = "$env:PHP_PATH;$env:PATH"
-# $env:PATH = "C:\build-cache\deps\bin;$env:PATH"
-
 $env:PATH = "C:\php\devel;C:\php\bin;$env:PATH"
-
-echo "PATH:" $env:PATH
 
 $task = New-Item 'task.bat' -Force
 Add-Content $task 'call phpize 2>&1'
