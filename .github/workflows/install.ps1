@@ -7,6 +7,7 @@ if (-not (Test-Path 'C:\php')) {
 # PHP SDK
 $bname = "php-sdk-$env:BIN_SDK_VER.zip"
 if (-not (Test-Path C:\php\$bname)) {
+    echo "Download: https://github.com/microsoft/php-sdk-binary-tools/archive/$bname"
     Invoke-WebRequest "https://github.com/microsoft/php-sdk-binary-tools/archive/$bname" -OutFile "C:\php\$bname"
 }
 $dname0 = "php-sdk-binary-tools-php-sdk-$env:BIN_SDK_VER"
@@ -34,8 +35,10 @@ if ('0' -eq $env:TS) {
 $bname = "php-devel-pack-$php_version$ts_part-Win32-$env:VC-$env:ARCH.zip"
 if (-not (Test-Path "C:\php\$bname")) {
     try {
+        echo "Download: https://windows.php.net/downloads/releases/$bname"
         Invoke-WebRequest "https://windows.php.net/downloads/releases/$bname" -OutFile "C:\php\$bname"
     } catch [System.Net.WebException] {
+        echo "Downlaod: https://windows.php.net/downloads/releases/archives/$bname"
         Invoke-WebRequest "https://windows.php.net/downloads/releases/archives/$bname" -OutFile "C:\php\$bname"
     }
 }
@@ -55,8 +58,10 @@ if (-not (Test-Path "C:\php\devel")) {
 $bname = "php-$php_version$ts_part-Win32-$env:VC-$env:ARCH.zip"
 if (-not (Test-Path "C:\php\$bname")) {
     try {
+        echo "Download: https://windows.php.net/downloads/releases/$bname"
         Invoke-WebRequest "https://windows.php.net/downloads/releases/$bname" -OutFile "C:\php\$bname"
     } catch [System.Net.WebException] {
+        echo "Download: https://windows.php.net/downloads/releases/archives/$bname"
         Invoke-WebRequest "https://windows.php.net/downloads/releases/archives/$bname" -OutFile "C:\php\$bname"
     }
 }
@@ -67,6 +72,7 @@ if (-not (Test-Path "C:\php\bin")) {
 # # library dependency: "C:\php\deps"
 # $bname = "$env:DEP-$env:VC-$env:ARCH.zip"
 # if (-not (Test-Path "C:\php\$bname")) {
+#     echo "Download: https://windows.php.net/downloads/pecl/deps/$bname"
 #     Invoke-WebRequest "https://windows.php.net/downloads/pecl/deps/$bname" -OutFile "C:\php\$bname"
 #     Expand-Archive "C:\php\$bname" 'C:\php\deps'
 # }
