@@ -1,4 +1,4 @@
-name: Windows (VS16)
+name: windows-vs16
 
 on: [push]
 
@@ -9,7 +9,7 @@ env:
 
 jobs:
   test:
-    name: Windows (VS16)
+    name: Windows(VS16)
     runs-on: windows-latest
 
     strategy:
