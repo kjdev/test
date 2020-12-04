@@ -50,11 +50,11 @@ jobs:
       ZTS: ${{ matrix.zts }}
 
     steps:
-      - name: Install required command
-        run: .\.github\workflows\install.ps1
-
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Install required command
+        run: .\.github\workflows\install.ps1
 
       - name: Checkout submodules
         run: git submodule update --init --recursive
