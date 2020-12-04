@@ -30,6 +30,8 @@ jobs:
           - '0'
           - '1'
 
+    runs-on: ${{ matrix.os }}
+
     env:
       PHP_VER: ${{ matrix.php }}
       VC: ${{ matrix.vc }}
