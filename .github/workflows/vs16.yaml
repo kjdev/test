@@ -9,7 +9,7 @@ env:
 
 jobs:
   test:
-    name: VS16
+    # name: VS16
     runs-on: windows-latest
 
     strategy:
