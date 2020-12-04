@@ -50,7 +50,7 @@ if (-not (Test-Path "C:\php\devel")) {
     }
 #    if ($dname0 -ne $dname1) {
 #        Move-Item "C:\php\$dname0" "C:\php\$dname1"
-    if ($dname0 -ne devel) {
+    if (-not (Test-Path "C:\php\devel")) {
         Move-Item "C:\php\$dname0" "C:\php\devel"
     }
 }
