@@ -10,10 +10,11 @@ jobs:
   test:
     strategy:
       matrix:
+        os: [windows-latest]
+        vc: [vs16]
+        php:
+          - '8.0'
         include:
-          - os: windows-latest
-            php: '8.0'
-            vc: vs16
           - os: windows-2016
             php: '7.4'
             vc: vc15
