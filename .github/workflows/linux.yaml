@@ -23,11 +23,16 @@ jobs:
           # - 5.4
           # - 5.3
           # - 5.2
+        apcu:
+          - '0'
+          - '1'
         include:
           - image: ghcr.io/kjdev/php
             php: '7.1'
+            apcu: '0'
           - image: ghcr.io/kjdev/php
             php: '7.0'
+            apcu: '0'
 
     container:
       image: ${{ matrix.image }}:${{ matrix.php }}-alpine3.12
@@ -40,6 +45,12 @@ jobs:
         run: |
           apk upgrade --no-cache
           apk add --no-cache autoconf gcc libtool make musl-dev
+
+      - name: Install APCu
+        run: |
+          printf "\n" | pecl install apcu
+          echo 'extension=apcu.so' > $(php --ini | grep 'Scan for' | sed 's|.* \(/.*\)$|\1|')/apcu.ini
+        if: ${{ matrix.apcu }}
 
       - name: Build
         run: |
