@@ -76,3 +76,5 @@ $env:PATH = "$env:PHP_PATH;$env:PATH"
 #     Expand-Archive "C:\build-cache\$bname" 'C:\build-cache\deps'
 # }
 $env:PATH = "C:\build-cache\deps\bin;$env:PATH"
+
+echo "PATH:" $env:PATH
