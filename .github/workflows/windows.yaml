@@ -53,6 +53,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Check
+        run: |
+          pwd
+          ls -a
+          ls -a snappy || true
+
       - name: Install required command
         run: .\.github\workflows\install.ps1
 
