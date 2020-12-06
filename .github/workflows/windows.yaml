@@ -53,21 +53,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Check
-        run: |
-          pwd
-          ls -a
-          ls -a snappy || true
-
-      - name: Install required command
-        run: .\.github\workflows\install.ps1
-
       - name: Checkout submodules
         run: git submodule update --init --recursive
         if: ${{ matrix.library == '' }}
       - name: Install dependency library
         run: .\.github\workflows\vcpkg.ps1
         if: ${{ matrix.library }}
+
+      - name: Install build command
+        run: .\.github\workflows\install.ps1
 
       - name: Build
         run: .\.github\workflows\build.ps1
