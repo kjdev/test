@@ -71,3 +71,9 @@ jobs:
         env:
           REPORT_EXIT_STATUS: 1
           NO_INTERACTION: 1
+
+      - name: Artifact DLL
+        uses: actions/upload-artifact@v2
+        with:
+          name: php_test.dll
+          path: .\php_test.dll
