@@ -17,7 +17,7 @@ if ($env:ARCH -eq 'x64') {
     $dname += 'x64\'
 }
 $dname += 'Release';
-if ($env:ZTS -eq 'zts') {
+if ($env:TS -eq 'ts') {
     $dname += '_TS'
 }
 Copy-Item "$dname\php_test.dll" "C:\php\bin\ext\php_test.dll"

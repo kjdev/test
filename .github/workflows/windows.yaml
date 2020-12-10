@@ -14,9 +14,9 @@ jobs:
           - '7.4'
           - '7.3'
           - '7.2'
-        zts:
+        ts:
           - 'nts'
-          - 'zts'
+          - 'ts'
         library:
           - ''
           - 'vcpkg'
@@ -47,7 +47,7 @@ jobs:
       PHP_VER: ${{ matrix.php }}
       VC: ${{ matrix.vc }}
       ARCH: ${{ matrix.arch }}
-      ZTS: ${{ matrix.zts }}
+      TS: ${{ matrix.ts }}
 
     steps:
       - name: Checkout repository
@@ -75,5 +75,5 @@ jobs:
       - name: Artifact DLL
         uses: actions/upload-artifact@v2
         with:
-          name: php_test.dll
+          name: php_test-${{ matrix.php }}-${{ matrix.ts }}-${{ matrix.vc }}-${{ matrix.arch }}
           path: .\php_test.dll
